@@ -1,0 +1,4 @@
+outs:
+- md5: 94d08bd3cf46e3266ad41d935780a5bb
+  size: 17209
+  path: car data.csv
