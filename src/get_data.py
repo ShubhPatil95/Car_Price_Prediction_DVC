@@ -1,8 +1,6 @@
 import argparse
-from email.policy import default
 import yaml
 import pandas as pd
-import os
 
 
 def read_file(file_path):
@@ -28,4 +26,4 @@ if __name__=="__main__":
     args.add_argument("--config_path",default="paths.yaml")
     args.add_argument("--config_params",default="params.yaml")
     parsed_args = args.parse_args()
-    get_data(paramsyaml_path=parsed_args.config_params,pathyaml_path=parsed_args.config_path)
+    get_data(parsed_args.config_params,parsed_args.config_path)

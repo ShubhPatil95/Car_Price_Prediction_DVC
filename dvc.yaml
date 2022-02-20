@@ -1,0 +1,16 @@
+stages:
+  load_data:
+    cmd: python3 src/get_data.py --config_path paths.yaml --config_params params.yaml
+    deps:
+    - src/get_data.py
+    - data_given/car data.csv
+    outs:
+    - data/raw/car_data.csv
+  preprocessed_data:
+    cmd: python3 src/data_prepo.py --config_path paths.yaml
+    deps:
+    - src/data_prepo.py
+    - data/raw/car_data.csv
+    outs:
+    - data/processed/car_data.csv
+    
