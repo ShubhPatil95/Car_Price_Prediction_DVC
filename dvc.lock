@@ -38,11 +38,15 @@ stages:
       size: 3314
     params:
       params.yaml:
+        random_cv.cv: 3
+        random_cv.n_estimators.num: 10
+        random_cv.n_estimators.start: 100
+        random_cv.n_estimators.stop: 1000
         random_cv.n_iter: 5
     outs:
     - path: report/params.json
-      md5: de6da2ad4f3efcf2b1b8f8ab9a19a36b
+      md5: bb30ca356c01ed4a27a87f3733a410c7
       size: 132
     - path: report/scores.json
-      md5: 62a0211e9fb95cead9686ea563c426dc
-      size: 92
+      md5: 7e485c0366efb4a17958e25e390b7d3b
+      size: 94

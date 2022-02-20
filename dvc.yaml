@@ -20,6 +20,10 @@ stages:
     - data/processed/car_data.csv
     params:
     - random_cv.n_iter
+    - random_cv.cv
+    - random_cv.n_estimators.start
+    - random_cv.n_estimators.stop
+    - random_cv.n_estimators.num
     metrics:
     - report/scores.json:
         cache: false

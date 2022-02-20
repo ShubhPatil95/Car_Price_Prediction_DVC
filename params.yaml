@@ -5,8 +5,8 @@ base:
 random_cv:
   n_estimators: 
     start : 100
-    stop: 1200
-    num: 12
+    stop: 1000
+    num: 10
   max_features: ['auto', 'sqrt']
   max_depth: 
     start : 5
@@ -15,7 +15,7 @@ random_cv:
   min_samples_split: [2, 5, 10, 15, 100]
   min_samples_leaf: [1, 2, 5, 10]
   n_iter: 5
-  cv: 5
+  cv: 3
 
 
 
