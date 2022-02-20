@@ -13,4 +13,15 @@ stages:
     - data/raw/car_data.csv
     outs:
     - data/processed/car_data.csv
+  Trainig_data:
+    cmd: python3 src/train_test_evaluate.py --config_path paths.yaml --config_params params.yaml
+    deps:
+    - src/train_test_evaluate.py
+    - data/processed/car_data.csv
+    metrics:
+    - report/scores.json:
+        cache: false
+    - report/params.json:
+        cache: false
+    
     

@@ -1,0 +1,23 @@
+base:
+  split_ratio: 0.2
+  random_state: 12
+
+random_cv:
+  n_estimators: 
+    start : 100
+    stop: 1200
+    num: 12
+  
+  max_features: ['auto', 'sqrt']
+  max_depth: 
+    start : 5
+    stop: 30
+    num: 6
+  
+  min_samples_split: [2, 5, 10, 15, 100]
+  min_samples_leaf: [1, 2, 5, 10]
+  n_iter: 10
+  cv: 5
+
+
+

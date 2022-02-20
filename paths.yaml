@@ -2,4 +2,8 @@ data:
   source_data: data_given/car data.csv
   raw_data : data/raw/car_data.csv
   processed_data: data/processed/car_data.csv
-  
+reports:
+ scores: report/scores.json
+ params: report/params.json
+
+

@@ -26,3 +26,20 @@ stages:
     - path: data/processed/car_data.csv
       md5: 879560c0fed57be97106b6d815382922
       size: 9523
+  Trainig_data:
+    cmd: python3 src/train_test_evaluate.py --config_path paths.yaml --config_params
+      params.yaml
+    deps:
+    - path: data/processed/car_data.csv
+      md5: 879560c0fed57be97106b6d815382922
+      size: 9523
+    - path: src/train_test_evaluate.py
+      md5: c7a2c3098fd5f15aead02a4940a25b84
+      size: 3314
+    outs:
+    - path: report/params.json
+      md5: d34f8abdec2ed77c92896c48c11a7866
+      size: 133
+    - path: report/scores.json
+      md5: 053e405b87baea07fce8e7eee67e1108
+      size: 93
