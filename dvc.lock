@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python3 src/get_data.py --config_path paths.yaml --config_params params.yaml
+    deps:
+    - path: data_given/car data.csv
+      md5: 94d08bd3cf46e3266ad41d935780a5bb
+      size: 17209
+    - path: src/get_data.py
+      md5: a6caa7bc3e0cda2d61276d1d5146719b
+      size: 842
+    outs:
+    - path: data/raw/car_data.csv
+      md5: 64092d001464bde0e206769a746ea36a
+      size: 18068
+  preprocessed_data:
+    cmd: python3 src/data_prepo.py --config_path paths.yaml
+    deps:
+    - path: data/raw/car_data.csv
+      md5: 64092d001464bde0e206769a746ea36a
+      size: 18068
+    - path: src/data_prepo.py
+      md5: 1d5474628e97480a83f9375e9f657b5f
+      size: 981
+    outs:
+    - path: data/processed/car_data.csv
+      md5: 879560c0fed57be97106b6d815382922
+      size: 9523
