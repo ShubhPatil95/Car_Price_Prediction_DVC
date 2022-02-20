@@ -18,6 +18,8 @@ stages:
     deps:
     - src/train_test_evaluate.py
     - data/processed/car_data.csv
+    params:
+    - random_cv.n_iter
     metrics:
     - report/scores.json:
         cache: false

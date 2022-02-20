@@ -5,5 +5,3 @@ data:
 reports:
  scores: report/scores.json
  params: report/params.json
-
-

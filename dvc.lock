@@ -36,10 +36,13 @@ stages:
     - path: src/train_test_evaluate.py
       md5: c7a2c3098fd5f15aead02a4940a25b84
       size: 3314
+    params:
+      params.yaml:
+        random_cv.n_iter: 5
     outs:
     - path: report/params.json
-      md5: d34f8abdec2ed77c92896c48c11a7866
-      size: 133
+      md5: de6da2ad4f3efcf2b1b8f8ab9a19a36b
+      size: 132
     - path: report/scores.json
-      md5: 053e405b87baea07fce8e7eee67e1108
-      size: 93
+      md5: 62a0211e9fb95cead9686ea563c426dc
+      size: 92
