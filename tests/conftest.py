@@ -1,5 +1,5 @@
 import pytest
-import yaml
+# import yaml
 import json
 
 @pytest.fixture
