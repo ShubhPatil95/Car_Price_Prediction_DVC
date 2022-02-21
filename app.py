@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import os
 from prediction_service import prediction
+
 webapp_root="webapp"
 
 static_dir = os.path.join(webapp_root,"static")

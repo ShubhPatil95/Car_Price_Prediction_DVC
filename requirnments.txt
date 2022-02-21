@@ -1,7 +1,3 @@
-
-# local package install
--e .
-
 dvc
 dvc[gdrive]
 sklearn
@@ -11,4 +7,3 @@ tox
 flake8
 flask 
 gunicorn
-pyyaml
