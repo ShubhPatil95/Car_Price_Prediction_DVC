@@ -1,5 +1,6 @@
 
--e . 
+# local package install
+-e .
 
 dvc
 dvc[gdrive]
@@ -10,5 +11,3 @@ tox
 flake8
 flask 
 gunicorn
-joblib
-yaml
