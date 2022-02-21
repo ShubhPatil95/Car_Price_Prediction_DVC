@@ -8,3 +8,4 @@ flake8
 flask 
 gunicorn
 joblib
+yaml
