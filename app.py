@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 import os
 from prediction_service import prediction
+webapp_root="webapp"
 
-webapp_root = "webapp"
-
-static_dir = os.path.join(webapp_root, "static")
-template_dir = os.path.join(webapp_root, "templates")
+static_dir = os.path.join(webapp_root,"static")
+template_dir = os.path.join(webapp_root,"templates")
 
 app=Flask(__name__,static_folder=static_dir,template_folder=template_dir)
 
