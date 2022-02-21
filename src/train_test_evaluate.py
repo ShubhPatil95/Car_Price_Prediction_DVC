@@ -1,3 +1,5 @@
+import joblib
+import os
 import numpy as np
 import argparse
 from sklearn.model_selection import train_test_split
@@ -15,12 +17,11 @@ def train_test_evaluates(paths_path,params_path):
     config_paths=read_file(paths_path)
     processed_data=config_paths["data"]["processed_data"]
 
-    df=pd.read_csv(processed_data)
-
+    df=pd.read_csv(processed_data,index_col=0)
     ## Data Selection(dependent and independent)
     X=df.iloc[:,1:]
     y=df.iloc[:,0]
-
+    print(X.head())
     #TRAIN TEST SPLIT
     random_state=config_params['base']["random_state"]
     split_ratio=config_params["base"]["split_ratio"]
@@ -88,10 +89,15 @@ def train_test_evaluates(paths_path,params_path):
         params = rf_random.best_params_
         json.dump(params, f, indent=4)
 
+    model_dir=config_paths["model_dir"]
+    os.makedirs(model_dir, exist_ok=True)
+    model_path = os.path.join(model_dir, "model.joblib")
+
+    joblib.dump(rf_random, model_path)
+
 if __name__=="__main__":
     args=argparse.ArgumentParser()
     args.add_argument("--config_paths",default="paths.yaml")
     args.add_argument("--config_params",default="params.yaml")
     parsed_args=args.parse_args()
     train_test_evaluates(parsed_args.config_paths,parsed_args.config_params)
-

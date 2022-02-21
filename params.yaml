@@ -16,6 +16,6 @@ random_cv:
   min_samples_leaf: [1, 2, 5, 10]
   n_iter: 5
   cv: 3
-
+webapp_model_dir : prediction_service/model/model.joblib
 
 

@@ -21,6 +21,7 @@ def data_prepo(pathyaml_path):
 
     ##export processed data
     final_dataset.to_csv(processed_data)
+    print(final_dataset.columns)
 
 
 if __name__=="__main__":

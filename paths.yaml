@@ -5,3 +5,5 @@ data:
 reports:
  scores: report/scores.json
  params: report/params.json
+model_dir: saved_models
+webapp_model_dir: prediction_service/model/model.joblib
