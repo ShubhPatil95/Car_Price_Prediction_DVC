@@ -43,3 +43,9 @@ stages:
         random_cv.n_estimators.start: 100
         random_cv.n_estimators.stop: 1000
         random_cv.n_iter: 5
+  log_production_model:
+    cmd: python src/log_production_model.py --config=params.yaml
+    deps:
+    - path: src/log_production_model.py
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
