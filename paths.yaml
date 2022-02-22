@@ -1,9 +1,9 @@
 data:
-  source_data: data_given/car data.csv
-  raw_data : data/raw/car_data.csv
-  processed_data: data/processed/car_data.csv
+  source_data: /home/shubham/car_dekho_project/Car_Dekho/data_given/car data.csv
+  raw_data : /home/shubham/car_dekho_project/Car_Dekho/data/raw/car_data.csv
+  processed_data: /home/shubham/car_dekho_project/Car_Dekho/data/processed/car_data.csv
 reports:
- scores: report/scores.json
- params: report/params.json
-model_dir: saved_models
-webapp_model_dir: prediction_service/model/model.joblib
+ scores: /home/shubham/car_dekho_project/Car_Dekho/report/scores.json
+ params: /home/shubham/car_dekho_project/Car_Dekho/report/params.json
+model_dir: /home/shubham/car_dekho_project/Car_Dekho/saved_models
+webapp_model_dir: /home/shubham/car_dekho_project/Car_Dekho/prediction_service/model/model.joblib

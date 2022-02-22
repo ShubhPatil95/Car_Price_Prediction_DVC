@@ -9,7 +9,10 @@ from sklearn import metrics
 import pandas as pd
 import json
 from sklearn.model_selection import RandomizedSearchCV
-
+import mlflow
+from urllib.parse import urlparse
+import mlflow.sklearn
+from mlflow.tracking import MlflowClient
 
 
 def train_test_evaluates(paths_path,params_path):
@@ -21,11 +24,10 @@ def train_test_evaluates(paths_path,params_path):
     ## Data Selection(dependent and independent)
     X=df.iloc[:,1:]
     y=df.iloc[:,0]
-    print(X.head())
+
     #TRAIN TEST SPLIT
     random_state=config_params['base']["random_state"]
     split_ratio=config_params["base"]["split_ratio"]
-    print(split_ratio)
     X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=split_ratio,random_state=random_state)
 
     #model_creation
@@ -58,46 +60,63 @@ def train_test_evaluates(paths_path,params_path):
 
     n_iter=config_params["random_cv"]["n_iter"]
     cv=config_params["random_cv"]["cv"]
+    
+    
+    experiment_name = "LinearRegression"
+    artifact_repository = './artifacts'
+    mlflow.set_tracking_uri('http://127.0.0.1:5000/')
+    client = MlflowClient()
+    try:
+        # Create experiment 
+        experiment_id = client.create_experiment(experiment_name, artifact_location=artifact_repository)
+    except:
+        # Get the experiment id if it already exists
+        experiment_id = client.get_experiment_by_name(experiment_name).experiment
 
-    rf_random = RandomizedSearchCV(estimator = rf, param_distributions = random_grid,scoring='neg_mean_squared_error',
-                               n_iter = n_iter, cv = cv, verbose=2, random_state=random_state, n_jobs = 1)
+    # mlflow_config = config_params["mlflow_config"]
+    # remote_server_uri = mlflow_config["remote_server_uri"]
 
-    rf_random.fit(X_train,y_train)
+    # mlflow.set_experiment(mlflow_config["experiment_name"])
 
-    predictions=rf_random.predict(X_test)
+    print("Mlflow started")
+    
+    print("ok")
+    
+    with mlflow.start_run(experiment_id=experiment_id, run_name="runName") as run:
+        # Get run id 
+        run_id = run.info.run_uuid
+        # Provide brief notes about the run
+        MlflowClient().set_tag(run_id,
+                           "mlflow.note.content",
+                           "This is just for learning purpose")
+        mlflow.sklearn.autolog()
 
-    MAE = metrics.mean_absolute_error(y_test, predictions)
-    MSE = metrics.mean_squared_error(y_test, predictions)
-    RMSE = np.sqrt(metrics.mean_squared_error(y_test, predictions))
+        
 
-    print('MAE', MAE)
-    print('MSE', MSE)
-    print('RMSE', RMSE)
+    
+    # with mlflow.start_run() as mlops_run:
+    #     print("Inside")
+    #     print("Ok")
+        # rf_random = RandomizedSearchCV(estimator = rf, param_distributions = random_grid,scoring='neg_mean_squared_error',
+        #                        n_iter = n_iter, cv = cv, verbose=2, random_state=random_state, n_jobs = 1)
 
-    scores_file = config_paths["reports"]["scores"]
-    params_file = config_paths["reports"]["params"]
+        # rf_random.fit(X_train,y_train)
+        # predictions=rf_random.predict(X_test)
+        # MAE = metrics.mean_absolute_error(y_test, predictions)
+        # MSE = metrics.mean_squared_error(y_test, predictions)
+        # RMSE = np.sqrt(metrics.mean_squared_error(y_test, predictions))
 
-    with open(scores_file, "w") as f:
-        scores = {
-            "MAE": MAE,
-            "MSE": MSE,
-            "RMSE": RMSE
-        }
-        json.dump(scores, f, indent=4)
+        # params = rf_random.best_params_
 
-    with open(params_file, "w") as f:
-        params = rf_random.best_params_
-        json.dump(params, f, indent=4)
-
-    model_dir=config_paths["model_dir"]
-    os.makedirs(model_dir, exist_ok=True)
-    model_path = os.path.join(model_dir, "model.joblib")
-
-    joblib.dump(rf_random, model_path)
+        # # mlflow.log_param(params)
+        # print("Mlflow logging")
+        # mlflow.log_metric("MAE", MAE)
+        # mlflow.log_metric("MSE", MSE)
+        # mlflow.log_metric("RMSE", RMSE)
 
 if __name__=="__main__":
     args=argparse.ArgumentParser()
-    args.add_argument("--config_paths",default="paths.yaml")
-    args.add_argument("--config_params",default="params.yaml")
+    args.add_argument("--config_paths",default="/home/shubham/car_dekho_project/Car_Dekho/paths.yaml")
+    args.add_argument("--config_params",default="/home/shubham/car_dekho_project/Car_Dekho/params.yaml")
     parsed_args=args.parse_args()
     train_test_evaluates(parsed_args.config_paths,parsed_args.config_params)
