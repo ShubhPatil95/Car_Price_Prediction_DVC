@@ -34,19 +34,12 @@ stages:
       md5: 879560c0fed57be97106b6d815382922
       size: 9523
     - path: src/train_test_evaluate.py
-      md5: 571a73146f7cc4f34971e6220330ce4c
-      size: 3547
+      md5: 05ff2f01cad8b5e18de17b9d20660d68
+      size: 4492
     params:
       params.yaml:
-        random_cv.cv: 3
+        random_cv.cv: 4
         random_cv.n_estimators.num: 10
         random_cv.n_estimators.start: 100
         random_cv.n_estimators.stop: 1000
         random_cv.n_iter: 5
-    outs:
-    - path: report/params.json
-      md5: e48c84acd4b09295c265c5b475c05d8d
-      size: 131
-    - path: report/scores.json
-      md5: 01c7b110ba1d43349062ab190935c624
-      size: 93

@@ -1,0 +1,4 @@
+artifact_location: ./create_artifacts_Locally
+experiment_id: '0'
+lifecycle_stage: active
+name: Linearregression

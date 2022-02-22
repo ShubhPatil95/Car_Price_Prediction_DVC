@@ -1,0 +1,21 @@
+artifact_path: best_estimator
+flavors:
+  python_function:
+    env: conda.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    python_version: 3.8.12
+  sklearn:
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.0.2
+model_uuid: 9cdb3d3172914bc2b15747362c99f049
+run_id: a9ba17b44d214c9ab9ca5f674eadd69c
+signature:
+  inputs: '[{"name": "Present_Price", "type": "double"}, {"name": "Kms_Driven", "type":
+    "long"}, {"name": "Owner", "type": "long"}, {"name": "no_year", "type": "long"},
+    {"name": "Fuel_Type_Diesel", "type": "long"}, {"name": "Fuel_Type_Petrol", "type":
+    "long"}, {"name": "Seller_Type_Individual", "type": "long"}, {"name": "Transmission_Manual",
+    "type": "long"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+utc_time_created: '2022-02-22 09:21:54.119191'
